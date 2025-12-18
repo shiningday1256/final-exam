@@ -1,23 +1,142 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<title>網頁設計期末考-設計個人網頁</title>
-<meta charset="utf-8">
-<style>
-    .place{
-        background: rosybrown;
-    }
-    :root{
-        background-color: lightyellow;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">網頁設計期末考    <title>titlee
+    <style>
+      
+        
+
+        body {
+            background-color: #FFFFE0;
+            font-family: "Microsoft JhengHei", sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+      
+        .info-box {
+            color: #4B2C20;           
+            background-color: #D2B48C; 
+            border: 2px solid #4B2C20; 
+            border-radius: 6px;        
+            padding: 10px 20px;
+            margin: 10px 0;
+            width: fit-content;
+            text-align: center;
+        }
+
+
+        .profile-img {
+            width: 400px;
+            height: 300px;
+            border: 3px solid green;   
+            border-radius: 10px;       
+            object-fit: cover;
+            margin: 15px 0;
+        }
+
+        .btn-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background-color: #8B4513;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-link:hover {
+            background-color: #A0522D;
+        }
+
+        #collect-section {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: pink; 
+            text-align: center;
+            padding-top: 50px;
+            z-index: 100;
+        }
+
+        .collect-img {
+            width: 400px;
+            height: 300px;
+            border: 2px solid blue;   
+            transition: all 1s;       
+            object-fit: cover;
+            margin: 20px 0;
+        }
+
+        .collect-img:hover {
+            width: 500px;
+            height: 400px;
+        }
+
+        .control-btn {
+            padding: 8px 15px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body>  
-    <p style="color:rosybrown;" id="p" class="p">學號: 91218119</p>
-</section>
-<section class="place">  
-    <h2>姓名:吳如曄</h2>
-</section>
-<img src="img/2.jpg" height="200px">
+<body>
+
+    <button class="btn-link" onclick="toggleCollect(true)">前往個人收藏網頁</button>
+
+    <div id="main-content" style="text-align: center;">
+        <div class="info-box">學號：91218119</div>
+        <div class="info-box">姓名：吳如曄</div>
+        
+        <div>
+            <img src="https://via.placeholder.com/400x300/green/white?text=My+Photo" alt="個人相片" class="profile-img">
+        </div>
+
+        <a href="https://chien-yuan-liu.github.io/VibeWealth/" target="_blank" class="btn-link">
+            響應式網站設計：理財WebAPP
+        </a>
+    </div>
+
+    <div id="collect-section">
+        <h1>我的個人收藏</h1>
+        
+        <img id="item-display" src="https://via.placeholder.com/400x300/333/fff?text=Item+1" class="collect-img">
+
+        <div style="margin-top: 20px;">
+            <button class="control-btn" onclick="changeItem(-1)">上一項收藏</button>
+            <button class="control-btn" onclick="changeItem(1)">下一項收藏</button>
+        </div>
+
+        <button class="btn-link" style="margin-top: 40px; background-color: #333;" onclick="toggleCollect(false)">返回首頁</button>
+    </div>
+
+    <script>
+        function toggleCollect(show) {
+            document.getElementById('collect-section').style.display = show ? 'block' : 'none';
+        }
+
+        const items = [
+            "https://via.placeholder.com/400x300/FF5733/fff?text=Favorite+1",
+            "https://via.placeholder.com/400x300/33FF57/fff?text=Favorite+2",
+            "https://via.placeholder.com/400x300/3357FF/fff?text=Favorite+3"
+        ];
+        
+        let currentIndex = 0;
+        function changeItem(step) {
+            currentIndex += step;
+            if (currentIndex < 0) currentIndex = items.length - 1;
+            if (currentIndex >= items.length) currentIndex = 0;
+            document.getElementById('item-display').src = items[currentIndex];
+        }
+    </script>
+
 </body>
 </html>
